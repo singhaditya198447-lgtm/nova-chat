@@ -1,0 +1,5 @@
+*.gguf
+__pycache__/
+.env
+*.log
+*.backup

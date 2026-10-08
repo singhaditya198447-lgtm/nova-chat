@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101014">
+  <title>{{ site_name }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><span class="brand-icon">✦</span><span>{{ site_name }}</span></div>
+      <button class="new-chat" onclick="newChat()">＋ <span>New chat</span></button>
+      <div class="section-label">RECENT CHATS</div>
+      <div id="historyList" class="history-list"></div>
+      <div class="sidebar-bottom">
+        <div class="profile-dot">A</div>
+        <div><b>My workspace</b><small>Personal assistant</small></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn mobile-menu" aria-label="Menu" onclick="toggleSidebar()">☰</button>
+        <div class="mobile-brand">{{ site_name }}</div>
+        <div class="model-pill"><span class="status-dot"></span> AI assistant</div>
+        <div class="top-actions">
+          <button class="icon-btn" title="Toggle theme" onclick="toggleTheme()">◐</button>
+        </div>
+      </header>
+
+      <section id="chat" class="chat">
+        <div class="welcome" id="welcome">
+          <div class="welcome-logo">✦</div>
+          <h1>What can I help with?</h1>
+          <p>Ask a question, learn something, or build an idea.</p>
+          <div class="suggestions">
+            <button onclick="useSuggestion('Teach me Python step by step')"><span>⌘</span> Learn Python</button>
+            <button onclick="useSuggestion('Help me brainstorm a small business idea')"><span>↗</span> Brainstorm ideas</button>
+            <button onclick="useSuggestion('Explain a difficult topic in simple words')"><span>✧</span> Explain a topic</button>
+            <button onclick="useSuggestion('Help me make a study plan')"><span>▤</span> Make a study plan</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="composer-wrap">
+        <form id="chatForm" class="composer">
+          <textarea id="message" rows="1" placeholder="Message {{ bot_name }}..." aria-label="Message"></textarea>
+          <div class="composer-tools">
+            <div class="left-tools">
+              <button type="button" class="tool-btn" onclick="startVoice()" title="Speak your message">🎙 <span>Voice</span></button>
+              <span id="voiceStatus" class="voice-status"></span>
+            </div>
+            <button id="send" type="submit" class="send-btn" aria-label="Send message">↑</button>
+          </div>
+        </form>
+        <p class="disclaimer">AI can make mistakes. Check important information.</p>
+      </div>
+    </main>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
